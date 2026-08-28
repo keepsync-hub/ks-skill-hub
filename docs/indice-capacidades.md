@@ -89,6 +89,31 @@ datos de cada empresa.
 | `ks-skill-respaldar-acuses-sii` | El flujo de correo → Drive → índice. Usa `ks-skill-parsear-acuse-sii` |
 | `ks-skill-certificado-digital-sii` | Extraer del `.pfx` y cargar en n8n. El contenido está en `ks-skill-sii-firma-y-token`; acá van los pasos con las rutas del repo |
 
+Sin skill propia y sin necesitarla, porque el patrón ya está documentado en
+`ks-skill-n8n-codigo-versionado`: `cruce/test/pagina-publica.test.mjs` y
+`cruce/n8n/generar-nodo.mjs --verificar`, que son la instancia concreta de "el Code node se genera
+desde el módulo y hay un verificador que falla si se separan".
+
+### Las suites de los contadores, y qué skill documenta cada una
+
+Cierra la cobertura: no hay ninguna suite cuyo tema no esté escrito en algún lado.
+
+| Suite | Skill que la documenta |
+|---|---|
+| `ventas/test/three-way-match.test.mjs` | `ks-skill-three-way-match` |
+| `pyl/test/pyl.test.mjs` | `ks-skill-pyl-neto-devengado` |
+| `compras/test/parser-recibo.test.mjs` | `ks-skill-parsear-recibo-proveedor` |
+| `dte-emitidos/test/resultado-envio.test.mjs` | `ks-skill-parsear-acuse-sii` |
+| `n8n/test/f29-nodes.test.mjs` | `ks-skill-f29-reconciliar` |
+| `n8n/test/estado-dte-nodes.test.mjs` | `ks-skill-seguimiento-estado-dte` |
+| `drive/estructura.test.mjs` | `ks-skill-drive-manifiesto` |
+| `cruce/test/cartola.test.mjs`, `cruce/test/cruce.test.mjs` | `ks-skill-cruce-facturas-pagos` |
+| `cruce/test/pagina-publica.test.mjs` | `ks-skill-n8n-codigo-versionado` |
+| `compras/test/compras.test.mjs` | `ks-skill-registrar-compra-proveedor` (Fase 2) |
+| `lib/verificar-hub.mjs` | el propio hub: ver "El código compartido" en el README del repo |
+
+---
+
 ---
 
 ## Lo que salió de la exploración y no es una skill

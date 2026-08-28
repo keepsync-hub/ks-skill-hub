@@ -1,6 +1,6 @@
 {
   "repo": "ks-contador-kompu",
-  "capturada": "2026-08-28T23:24:25.613Z",
+  "capturada": "2026-08-28T23:39:18.107Z",
   "nota": "Huellas SHA-256 de la salida de cada artefacto. Las salidas completas quedan en _local/, que no se versiona: traen datos reales de la empresa.",
   "artefactos": {
     "compras/test/compras.test.mjs": {
@@ -31,7 +31,7 @@
     "drive/estructura.test.mjs": {
       "exit": 0,
       "lineas": 56,
-      "sha256": "4c9a67f65a61a2cd12a5138273cc473215ee2cd7b9f874782535558c81fca282"
+      "sha256": "9af4de0eb3cb3811446b55933c9ca1be42e3122a1969ac852292fedd5b99690e"
     },
     "dte-emitidos/test/resultado-envio.test.mjs": {
       "exit": 0,

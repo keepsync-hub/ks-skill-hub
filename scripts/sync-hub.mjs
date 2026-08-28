@@ -12,7 +12,15 @@
 //
 // El `--verificar` es la razon de ser de todo esto: `ks-contador-kompu` nacio como copia de
 // `ks-contador-jf` y los dos se separaron sin que nada avisara.
+//
+// Son dos guardas, no una, porque detectan cosas distintas:
+//   - Del lado del HUB (este `--verificar`): "el repo se quedo atras del canonico". Necesita los
+//     dos repos a mano, asi que corre en la sesion de trabajo o en el CI del hub.
+//   - Del lado del REPO (`lib/verificar-hub.mjs`, que este script genera): "alguien edito la copia
+//     vendorizada". No necesita el hub, asi que puede ir en la lista de tests del repo y correr
+//     siempre.
 
+import { createHash } from 'node:crypto'
 import { readdirSync, readFileSync, writeFileSync, mkdirSync, statSync, existsSync, rmSync } from 'node:fs'
 import { join, dirname, relative } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -39,7 +47,7 @@ function archivosDe (dir, base = '') {
     const ruta = join(dir, nombre)
     const rel = base ? `${base}/${nombre}` : nombre
     if (statSync(ruta).isDirectory()) salida.push(...archivosDe(ruta, rel))
-    else if (/\.(mjs|py)$/.test(nombre)) salida.push(rel)
+    else if (/\.(mjs|py)$/.test(nombre)) salida.push(rel)   // huellas.json queda fuera a proposito
   }
   return salida
 }
@@ -94,6 +102,67 @@ if (existsSync(destinoAbs)) {
     if (verificar) diferencias.push(`${DESTINO_REL}/${rel}: sobra (ya no existe en el hub)`)
     else { rmSync(join(destinoAbs, rel)); console.log(`  borrado ${DESTINO_REL}/${rel} (ya no existe en el hub)`) }
   }
+}
+
+// Del lado del repo, la guarda se sostiene sola: un archivo de huellas y un verificador chico que
+// las recomprueba. Detecta la edicion local -- que es el modo de falla frecuente -- sin exigir que
+// el hub este clonado al lado.
+if (!verificar) {
+  const huellas = {}
+  for (const rel of archivos) {
+    huellas[rel] = createHash('sha256').update(readFileSync(join(destinoAbs, rel), 'utf8')).digest('hex')
+  }
+  mkdirSync(destinoAbs, { recursive: true })
+  writeFileSync(join(destinoAbs, 'huellas.json'), JSON.stringify({
+    origen: 'keepsync-hub/ks-skill-hub',
+    sincronizado: new Date().toISOString().slice(0, 10),
+    nota: 'Huellas de la copia vendorizada. Las recomprueba lib/verificar-hub.mjs.',
+    archivos: huellas,
+  }, null, 2) + '\n')
+
+  writeFileSync(join(repo, 'lib', 'verificar-hub.mjs'), `// ARCHIVO GENERADO -- NO EDITAR.
+// Verifica que la copia vendorizada de \`lib/_hub/\` no haya sido editada dentro de este repo.
+// El codigo compartido es uno solo: se edita en keepsync-hub/ks-skill-hub, se corren los tests de
+// alla, y se baja con \`node scripts/sync-hub.mjs <este-repo>\`. Editarlo aca deja las dos copias
+// distintas sin que nada avise, que es exactamente como se separaron los dos repos contadores.
+//
+//   node lib/verificar-hub.mjs
+//
+// Esto NO detecta que el hub haya avanzado: para eso, \`sync-hub.mjs --verificar\` desde el hub.
+
+import { createHash } from 'node:crypto'
+import { readFileSync, existsSync } from 'node:fs'
+import { join, dirname } from 'node:path'
+import { fileURLToPath } from 'node:url'
+
+const aqui = dirname(fileURLToPath(import.meta.url))
+const manifiesto = JSON.parse(readFileSync(join(aqui, '_hub', 'huellas.json'), 'utf8'))
+
+let fallos = 0
+for (const [rel, esperada] of Object.entries(manifiesto.archivos)) {
+  const ruta = join(aqui, '_hub', rel)
+  if (!existsSync(ruta)) {
+    console.error(\`  FALLO lib/_hub/\${rel}: falta\`)
+    fallos++
+    continue
+  }
+  const actual = createHash('sha256').update(readFileSync(ruta, 'utf8')).digest('hex')
+  if (actual !== esperada) {
+    console.error(\`  FALLO lib/_hub/\${rel}: fue editado dentro de este repo\`)
+    fallos++
+  } else {
+    console.log(\`  ok   lib/_hub/\${rel}\`)
+  }
+}
+
+if (fallos) {
+  console.error(\`\\n=== \${fallos} archivo(s) del hub editados aca. Revertirlos y hacer el cambio en el hub. ===\`)
+  process.exitCode = 1
+} else {
+  console.log(\`\\n=== TODO OK (\${Object.keys(manifiesto.archivos).length} archivos, sincronizados el \${manifiesto.sincronizado}) ===\`)
+}
+`)
+  console.log('  escrito lib/verificar-hub.mjs y lib/_hub/huellas.json')
 }
 
 if (verificar) {
