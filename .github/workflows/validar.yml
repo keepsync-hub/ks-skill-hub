@@ -1,0 +1,31 @@
+name: Validar la librería de skills
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      # El linter propio es Node puro a proposito: corre sin `npm install`, igual que
+      # todo lo de `lib/`. El validador oficial necesita el CLI de Claude Code y no se
+      # asume disponible en el runner.
+      - name: Linter de skills
+        run: node scripts/validar.mjs --lista
+
+      - name: Tests de los modulos compartidos
+        run: |
+          shopt -s nullglob
+          fallas=0
+          for t in lib/test/*.test.mjs; do
+            echo "--- $t"
+            node "$t" || fallas=1
+          done
+          exit $fallas
+        shell: bash

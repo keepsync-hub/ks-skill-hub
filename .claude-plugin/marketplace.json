@@ -1,0 +1,30 @@
+{
+  "name": "keepsync",
+  "owner": {
+    "name": "KeepSync",
+    "url": "https://github.com/keepsync-hub"
+  },
+  "description": "Libreria de skills de KeepSync: lo que sirve en cualquier repo, con su codigo canonico adentro.",
+  "plugins": [
+    {
+      "name": "ks-comun",
+      "source": "./plugins/ks-comun",
+      "description": "Patrones de ingenieria y reglas comerciales de KeepSync que sirven en cualquier repo: regla de precio USD a CLP, estilo de PDF de cotizacion, Hojas de Google con formulas vivas, manifiesto de Google Drive, ciclo INBOX/DONE, codigo versionado hacia n8n, indice jsonl append-only y extraccion de texto de documentos.",
+      "version": "1.0.0",
+      "author": { "name": "KeepSync" },
+      "repository": "https://github.com/keepsync-hub/ks-skill-hub",
+      "keywords": ["keepsync", "n8n", "drive", "cotizacion", "pdf"],
+      "category": "productivity"
+    },
+    {
+      "name": "ks-sii",
+      "source": "./plugins/ks-sii",
+      "description": "Contabilidad chilena ante el SII, compartida por los repos contadores de KeepSync: firma XML-DSig y token, consulta del RCV, reconciliacion del F29, 3-way match, parseo de acuses y de recibos de proveedor, P&L sobre el neto y cruce de facturas contra pagos.",
+      "version": "1.0.0",
+      "author": { "name": "KeepSync" },
+      "repository": "https://github.com/keepsync-hub/ks-skill-hub",
+      "keywords": ["sii", "chile", "f29", "dte", "rcv", "contabilidad"],
+      "category": "finance"
+    }
+  ]
+}
