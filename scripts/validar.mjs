@@ -52,9 +52,17 @@ const FUGAS_PERMITIDAS = [
   /invoice\+statements@mail\.anthropic\.com/, // remitente institucional del proveedor
 ]
 
+// Un archivo de fixtures necesita RUTs y correos con forma valida para probar el parser.
+// La salida es explicita y con motivo, no una lista de excepciones escondida en el linter:
+// el archivo declara `datos-sinteticos: <motivo>` en su cabecera. Los secretos y los ids de
+// Drive NO se eximen nunca -- no hay motivo legitimo para tener uno en el hub.
+const EXIMIBLES = new Set(['RUT chileno', 'correo'])
+
 function revisarFugas (ruta, texto) {
   const rel = ruta.replace(RAIZ + '/', '')
+  const sinteticos = /datos-sinteticos\s*:/.test(texto.split('\n').slice(0, 40).join('\n'))
   for (const { nombre, re, caso } of FUGAS) {
+    if (sinteticos && EXIMIBLES.has(nombre)) continue
     for (const m of texto.matchAll(re)) {
       const hallado = m[0]
       if (FUGAS_PERMITIDAS.some((p) => p.test(hallado))) continue

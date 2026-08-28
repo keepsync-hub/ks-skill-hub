@@ -1,0 +1,52 @@
+{
+  "repo": "ks-contador-jf",
+  "capturada": "2026-08-28T23:24:26.340Z",
+  "nota": "Huellas SHA-256 de la salida de cada artefacto. Las salidas completas quedan en _local/, que no se versiona: traen datos reales de la empresa.",
+  "artefactos": {
+    "compras/test/compras.test.mjs": {
+      "exit": 0,
+      "lineas": 55,
+      "sha256": "19519c07852d4aa0a89b2489370c6380b069e8eb9633d626d0f93c235a802c26"
+    },
+    "compras/test/parser-recibo.test.mjs": {
+      "exit": 0,
+      "lineas": 44,
+      "sha256": "4b8c0383f707a7c9a071d26d7f766f3046e6bb847599a2b142558672ce4c5cb5"
+    },
+    "drive/estructura.test.mjs": {
+      "exit": 0,
+      "lineas": 56,
+      "sha256": "8fc16d9ff927260cc6ec90b5937fb70ebbe525870c880a7570684877174f9399"
+    },
+    "dte-emitidos/test/resultado-envio.test.mjs": {
+      "exit": 0,
+      "lineas": 155,
+      "sha256": "05f613a64448c6f8247c31b46683013ef1933579be2be6f110846c7ac0e9aa03"
+    },
+    "n8n/test/estado-dte-nodes.test.mjs": {
+      "exit": 0,
+      "lineas": 48,
+      "sha256": "31d32fd9f8469a3caed33441d4e4240de7631a9d4cddaf39d96b90b5930b14af"
+    },
+    "n8n/test/f29-nodes.test.mjs": {
+      "exit": 0,
+      "lineas": 42,
+      "sha256": "39f142ba421ca5b5bacce4fe97373009f4b14a30a0750d1a7d02a98deb251e6d"
+    },
+    "pyl/test/pyl.test.mjs": {
+      "exit": 0,
+      "lineas": 67,
+      "sha256": "b1fd4af6087dae29af720588e433733bcc9fbbccb34245f568b27a8389e38dd0"
+    },
+    "ventas/test/three-way-match.test.mjs": {
+      "exit": 0,
+      "lineas": 57,
+      "sha256": "2940a226eae156775a8f28cfc633bfd4d604ad1997014ebf81827ca56831a347"
+    },
+    "pyl/reporte.mjs --json": {
+      "exit": 0,
+      "lineas": 944,
+      "sha256": "ff8206e487c0428bfbafbe665eb5d7be38079cf30f116e47461bedce61a648ff"
+    }
+  }
+}
