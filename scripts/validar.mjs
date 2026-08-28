@@ -48,6 +48,8 @@ const FUGAS_PERMITIDAS = [
   /\$\{CLAUDE_PLUGIN_ROOT\}/,
   /^[A-Za-z0-9_-]*[._/][A-Za-z0-9_-]*$/, // rutas de archivo y nombres con punto o barra
   /^(REEMPLAZAR|COMPLETAR)_/,
+  /^ks-skill-[a-z0-9-]+$/,              // el nombre de una skill del hub pasa los 28 caracteres
+  /^ks-(comun|sii)$/,
   /siidte@sii\.cl/,                     // remitente institucional del SII, no una persona
   /invoice\+statements@mail\.anthropic\.com/, // remitente institucional del proveedor
 ]

@@ -61,6 +61,8 @@ comercial.
 | `ks-skill-parsear-recibo-proveedor` | ✅ | Leer el correo de recibo de un proveedor e imputar el costo |
 | `ks-skill-pyl-neto-devengado` | ✅ | El P&L sobre el neto, devengado por fecha de documento |
 | `ks-skill-cruce-facturas-pagos` | ✅ | Cruzar las facturas del RCV contra los pagos del banco |
+| `ks-skill-seguimiento-estado-dte` | — | Vigilar aceptación y reclamo, y la aceptación tácita de los 8 días |
+| `ks-skill-nueva-instancia-contador` | — | Clonar el contador para una empresa nueva |
 
 ## El código compartido (`lib/`)
 
