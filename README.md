@@ -30,6 +30,23 @@ Para dejarlo fijo en un repo, en su `.claude/settings.json`:
 Las skills quedan disponibles como `/ks-comun:ks-skill-cotizar-usd`,
 `/ks-sii:ks-skill-three-way-match`, etc.
 
+### El marketplace se sirve desde `main`
+
+El `source` no lleva `ref`, así que resuelve a la rama por defecto. **Un cambio en las skills o en
+`lib/` no le llega a nadie hasta que está en `main`.**
+
+Es la razón por la que un repo consumidor puede tener el `settings.json` correcto y aun así no ver
+ninguna skill: el marketplace apunta a un `main` que todavía no tiene el manifiesto.
+
+Se puede fijar un `ref` a una rama de trabajo para probar antes de mergear:
+
+```json
+{ "source": { "source": "github", "repo": "keepsync-hub/ks-skill-hub", "ref": "mi-rama" } }
+```
+
+Es temporal y hay que revertirlo: dejarlo clava ese repo a una rama que después se borra. Por
+defecto no se hace.
+
 ## Los dos plugins
 
 El corte es por **dominio portable**, no por repo de origen: cada skill habilitada gasta contexto

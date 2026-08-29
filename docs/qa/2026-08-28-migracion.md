@@ -15,6 +15,11 @@ el agregado del P&L + el cruce) y 9 de JF (8 suites + el agregado del P&L).
 Se versionan huellas SHA-256, no las salidas: el agregado del P&L trae cifras, RUTs y nombres de
 clientes reales, y este repo no aloja datos de ninguna empresa.
 
+**Y se versionan acá, no en cada contador**, aunque describan los tests de esos repos: las produce
+`scripts/qa-contador.mjs`, que es del hub, y son sobre la migración al hub. Mantenerlas acá deja los
+dos repos de producción libres de artefactos del hub y hace que la comparación corra siempre desde
+el mismo lugar.
+
 ## Qué se migró
 
 Ocho módulos puros y tres corredores de test, todos a `lib/_hub/` (vendorizado, ver
