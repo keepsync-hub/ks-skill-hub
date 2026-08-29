@@ -1,0 +1,9 @@
+{
+  "name": "ks-comun",
+  "description": "Patrones de ingenieria y reglas comerciales de KeepSync que sirven en cualquier repo.",
+  "version": "1.0.0",
+  "author": { "name": "KeepSync" },
+  "homepage": "https://github.com/keepsync-hub/ks-skill-hub",
+  "repository": "https://github.com/keepsync-hub/ks-skill-hub",
+  "license": "UNLICENSED"
+}

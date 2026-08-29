@@ -1,0 +1,72 @@
+{
+  "repo": "ks-contador-kompu",
+  "capturada": "2026-08-28T23:39:18.107Z",
+  "nota": "Huellas SHA-256 de la salida de cada artefacto. Las salidas completas quedan en _local/, que no se versiona: traen datos reales de la empresa.",
+  "artefactos": {
+    "compras/test/compras.test.mjs": {
+      "exit": 0,
+      "lineas": 50,
+      "sha256": "0443b1d38de185fe116aa9e3c1dd61d70506f678efc6a89fa864827363f4cfb4"
+    },
+    "compras/test/parser-recibo.test.mjs": {
+      "exit": 0,
+      "lineas": 47,
+      "sha256": "5a36891a4796410e10ce52f305498d04bc3342d3c903757331b9117bfea302ed"
+    },
+    "cruce/test/cartola.test.mjs": {
+      "exit": 0,
+      "lineas": 50,
+      "sha256": "194e8b0fcfcda597818c18484f024cbf9b2e30859a558805155dbf4ced4faa52"
+    },
+    "cruce/test/cruce.test.mjs": {
+      "exit": 0,
+      "lineas": 76,
+      "sha256": "624d817780b57f6aa83c7c63e55784ebce72ac19a415b28ec136bb5a5453f35c"
+    },
+    "cruce/test/pagina-publica.test.mjs": {
+      "exit": 0,
+      "lineas": 54,
+      "sha256": "0b1cf115f841f64daf8bf559ffee1aae569abc07b7ca0c289f9833b8aa396aa6"
+    },
+    "drive/estructura.test.mjs": {
+      "exit": 0,
+      "lineas": 56,
+      "sha256": "9af4de0eb3cb3811446b55933c9ca1be42e3122a1969ac852292fedd5b99690e"
+    },
+    "dte-emitidos/test/resultado-envio.test.mjs": {
+      "exit": 0,
+      "lineas": 96,
+      "sha256": "39780609d3c6ce9d36f4bf1ff5d304d583d01bb256f9cd85c8d38b885a6be8ef"
+    },
+    "n8n/test/estado-dte-nodes.test.mjs": {
+      "exit": 0,
+      "lineas": 48,
+      "sha256": "31d32fd9f8469a3caed33441d4e4240de7631a9d4cddaf39d96b90b5930b14af"
+    },
+    "n8n/test/f29-nodes.test.mjs": {
+      "exit": 0,
+      "lineas": 42,
+      "sha256": "39f142ba421ca5b5bacce4fe97373009f4b14a30a0750d1a7d02a98deb251e6d"
+    },
+    "pyl/test/pyl.test.mjs": {
+      "exit": 0,
+      "lineas": 94,
+      "sha256": "d357b2e984a11fc776a27a69dc0fefd6aac9dca20ed2489a9bd08c9368443866"
+    },
+    "ventas/test/three-way-match.test.mjs": {
+      "exit": 0,
+      "lineas": 55,
+      "sha256": "bddf271357de2bfc778e4cf26a5978cbead158c0ee83d2adbcecda2a90a125bb"
+    },
+    "pyl/reporte.mjs --json": {
+      "exit": 0,
+      "lineas": 26,
+      "sha256": "a6dae26a283825b64dd7de3ff7cf9ec2153b1cdc50c159c056cf2dd1036a7d49"
+    },
+    "cruce/actualizar-hoja.mjs": {
+      "exit": -1,
+      "lineas": 1,
+      "sha256": "5ba84ce6bc74148a8cccdce398c76223c1748c7aa847394948ab7c032627f93d"
+    }
+  }
+}
