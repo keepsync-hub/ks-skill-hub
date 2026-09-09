@@ -58,7 +58,7 @@ Dos de ellas usan guion bajo por herencia. Al tocarlas, normalizarlas a `ks-skil
 | Nombre propuesto | Cubre | Lo que hay que capturar |
 |---|---|---|
 | `ks-skill-cotizar-capacitacion` | `npm run cotizar-capacitacion` | Hoy está dentro de `compra-agil-ofertar`, que cubre dos rubros en 172 líneas. Precio = tope × 0,9; score de apertura 0–100% (−5% por criterio direccionador, **no** es probabilidad de adjudicación); los dos bloqueos vivos del rubro |
-| `ks-skill-cotizar-suscripcion` | `npm run cotizar-suscripcion` | Cotización fuera de compra pública; multi-línea que **falla en voz alta** si no vienen los cinco campos; el tipo de cambio a mano y por qué |
+| `ks-skill-cotizar-suscripcion` | `npm run cotizar-suscripcion` | Cotización fuera de compra pública; multi-línea que **falla en voz alta** si no vienen los cinco campos; el tipo de cambio a mano y por qué; **un periodo por PDF** cuando piden 12 y 24 meses; el `--titulo` sin usuarios ni meses, que el módulo los agrega |
 | `ks-skill-compra-agil-leads` | `npm run leads` | El contacto no está en la API (verificado): sale de los adjuntos, que no gastan cuota. Cita obligatoria; nombre deducido marcado como deducción; buzones de cuentas por pagar segregados. Rendimiento medido 2026-08-24: 97/258 (38%) |
 | `ks-skill-compra-agil-digest` | `npm run digest` | Cero llamadas. Es **orden de revisión sugerido**, nunca probabilidad de ganar |
 | `ks-skill-estudio-mercado` | `mercado` + `estudio` + `criterios` | Página de 25 (con 50 la API da 504 tres de cada cuatro veces); el total de una consulta es **cota superior contaminada**; el tope de 10.000 hace de los estados terminales cotas inferiores; el archivo de propuestas es **inerte** y promover es un paso humano |

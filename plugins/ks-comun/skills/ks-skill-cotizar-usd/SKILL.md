@@ -41,6 +41,42 @@ dos cotizaciones del mismo día al mismo cliente salen con tipos de cambio disti
 note. Por eso siempre hay que **revisar la fuente del tipo de cambio antes de dar una cotización por
 buena**.
 
+## Una suscripción entera, no un monto suelto
+
+Cuando lo que se cotiza es una suscripción SaaS con precio de lista en USD por usuario y por mes,
+`ks-compra-agil` ya tiene el camino completo hasta el PDF y **no hay que rearmarlo**:
+
+```bash
+npm run cotizar-suscripcion -- \
+  --id=Q-AAAAMMDD-CLIENTE --titulo="Claude Max 20x" --cliente="..." \
+  --linea="Claude Max 20x|200|2|12|fuente del precio de lista" \
+  --tc=926.94 --tc-fuente="dólar observado, mindicador.cl, 09-09-2026"
+```
+
+Aplica esta regla por línea, escribe el PDF con `ks-skill-keepsync-pdf` y deja el desglose de los
+cinco pasos en un JSON al lado. El `--titulo` es solo el producto: el módulo le agrega
+«— N usuarios, M meses», y repetirlo ahí sale duplicado en la carátula.
+
+**Un periodo por cotización, no una tabla comparativa.** Cuando el cliente pide el mismo producto a
+12 y a 24 meses, son dos corridas y dos PDF: cada documento cierra un precio, y una lámina con dos
+plazos al lado obliga al cliente a elegir dentro de un documento que debería poder firmar entero.
+
+## El precio de lista no es uno solo: hay tarifa mensual y tarifa anual
+
+El proveedor suele publicar dos, y para un compromiso de 12 o 24 meses corresponde la **anual**,
+que es el costo real más bajo. Verificado el 2026-09-09:
+
+| Producto | Mensual | Anual | Cuál entra a la regla |
+|---|---|---|---|
+| Claude Max 20x | USD 200 | **no existe** | 200 — Anthropic no publica tarifa anual para Max |
+| ChatGPT Business, asiento Premium | USD 125 | USD 100 | 100 |
+| Claude Team, asiento premium | USD 125 | USD 100 | 100 |
+
+Tomar la mensual donde sí hay anual infla la cotización un 25% contra un competidor que usó la
+anual. Y al revés: asumir que Max tiene descuento anual **subcotiza** un 20% contra el costo real,
+que es plata perdida en cada uno de los 24 meses. Las tarifas cambian: hay que revisarlas antes de
+cotizar, no reusarlas de una cotización vieja.
+
 ## Guardrails
 
 - **El desglose no va en el PDF del cliente.** El tipo de cambio, el impuesto no recuperable y el
@@ -48,7 +84,8 @@ buena**.
   desglose queda en el JSON que se escribe al lado. Ver `ks-skill-keepsync-pdf`.
 - **Nunca cotizar por sobre el tope presupuestario** cuando esto alimenta una compra pública: es
   causal de inadmisibilidad.
-- **No inventar el precio de lista.** Entra a mano junto con la fuente de la que salió.
+- **No inventar el precio de lista.** Entra a mano junto con la fuente de la que salió, y
+  revisando si el proveedor publica tarifa anual además de la mensual (ver el cuadro de arriba).
 - Aplicar la regla **por línea** y no sobre el total, para que el subtotal de cada fila sea el que sale
   de la regla y no un prorrateo. Como es una cadena de multiplicaciones, las dos vías solo pueden
   diferir en el redondeo al peso.
